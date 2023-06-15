@@ -1,0 +1,117 @@
+Expertise of any technology:
+1>Master of troubleshooting
+2>Less time to execute the problem. (Performance enhancement)
+3>happy flow--> hurdles,errors-->documentation of the errors for future reference--->Contribute to the community(Linkedin,GIT,Stackoverflow etc)
+These are the protfolio for your career*
+
+Understanding the hardware components so that the collaboration it with the software for performance enhancement say for eq.Spark
+1.Writing of the data onto the console
+2.read the data to memory--> File input class
+3.read the data from H/D-->File o/p class
+4.Flush memory
+--------------------------------------
+
+Big Data:has 5 V's ==>volume,velocity,variety,value,veracity
+1.Data storage(Data Storage API)
+2.Data Processing(Data Process API)
+
+lets discuss at OS level
+win-->NTFS,FAT(for storing files)
+linux-->Ext3,Ext4(for storing files),xfs
+
+File Descriptors---> STDIN,STDOUT,STDERR
+
+Distributed file system--> GFS,HDFS (Hadoop Distributed file system)
+PRocessing the Data--> Map Reduce 
+To overcome if anything goes wrong the we cameup with-->Distributed Task Scheduling Algorithm i.e YARN (Yet Another Resource Negotiator)
+
+File system has 3 parameters: read,write,security(This can be achieved by giving access permissions)
+
+*HDFS FILESYSTEM*
+Hadoop has 3 components: HDFS,MapReduce,YARN
+Hadoop started with YAHOO..they hired Duck Cutting he studied Google fle system and big table and developed Haddop
+CBH 2.0 was the distribution in the market and they outsourced in Apache(Open source community).
+GNU(open source foundation)
+HotonWorks(HDP5,HDP6), Cloudera(Impala, Apache Centric), MapR(MapR file System, they claimed developed in c/c++)
+Popular MachineLearing forums--> OpenAI, Kaggle
+Recent Distributed file system in market which is about replace HDFS is "APACHE OZONE"
+
+CDP---> 2 distribution---> Private cloud based (installation can happen on bare metal)
+Cloudera two functions-->Data flow,CML
+
+Alterative to MapReduce is "Spark" which is fast
+YARN is used less so Kubernetes is used instead of it
+-------------------------------------------------------
++ MetaData(block information) and state of the file is stored in "fsimage file" is called "Checkpointing".
++ there is "master slave archictecture" and the fsimage is stored in master node
++ HADOOP--->>HDFS--->>(NAMENODE "Heart of the architecture")--->>fsimage(namespaces)------>>edits
++Checkpoint operations can consume a large amount of CPU and memory resources. To maintain the
+performance of the Primary NameNode during checkpoints, checkpoint operations are offloaded to a 
+Secondary NameNode. If NameNode High Availability has been configured, then a Standby NameNode
+replaces the Secondary NameNode and checkpointing is offloaded to the Standby NameNode instead.
++ Checkpointing works nearly the same way if NameNode HA is configured. The difference is that the 
+Secondary NameNode is replaced by a Standby NameNode and the Primary NameNode is referred to 
+as the Active NameNode.  
++ Zookeper is a highly available service for maintaining small amounts of
+coordination data, notifying clients of changes in that data, and monitoring clients for failures.
++ The ZKFC(Zookeeper Failover Controller) is a ZooKeeper client that monitors and manages the state of the NameNode daemon.
++ Journal node--->whenever the modifications happens in the namespace it broadcastes to journalnodes ,so situation in which both namenode and standby namenode fails then we can retrieve from journalnode.
++ Fencing Mechanisum--> for maintaining the system correctness require to check that there is only one Active state NameNode in the system if found two it'll shot the another Only one Namenode is allowed to write to the
+journal node, so there is no corrupting th HDFS file system metadata.
++ Editlogs--> when we try to read any file first we'll see edit logs then check for fsimage further both gets merged into one fsimage
++ HDFS--> 3 config files-->1. coresite.xml 2.HDFSSite.xml 3. Mapsite.xml
++ 1 file split in 3 block---> file are written on three Datanodes simultaneosly. similarly read operattion read operation is requested to the namenode manager and then to directed to the Datanodes
++ My fle is of 200MB i'll need two block(block size 128 MB)---> 1st block=> 128 MB
+                                                                2nd block=> 72 MB
+--------------------------------------------
+DISTRIBUTED DATA PROCESSING ALGORITHM :--- MapReduce
+DISTRIBUTED TASK PROCESSING ALGORITHM :--- YARN
+
+*flow of Mapreducer*
++ Input file format 
++ InputSplits
++ RecordeReader
++ Shuffle And Sort (Hash Partition ie which map data output will go to which reducer)
++ Reducer
++ Reduce phase
++ output file
+
+(Note :- "Combiner" is the mini-reducer which is running locally) 
+ 
+
+
+*YARN*
+          master node--->> Resource manager ---->> NameNode
+                              
+
+          worker node--->> NodeManager ---->> DataNode 
+
+
+
+ Job1:---->>ResourceManager--->>container spawning ,where the container has to be formed is asked by application master to the NodeManager-->> application master--->> then resourcemanager will decide where the map task will be executed 
+  ~~In case where the application master fails the the proxy servers is setup on nodes then the updates are stored on it then the heartbeats are send to resourcemanager and then new appication master is created by resource manager.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
